@@ -1,35 +1,32 @@
 package com.example.demo.uce.repository.modelo;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "empleado")
-public class Empleado {
+@Table(name = "estudiante")
+public class Estudiante {
 	
 	@Id
-	@Column(name = "empl_id")
+	@Column(name = "estu_id")
 	private Integer id;
-
-	@Column(name = "empl_nombre")
+	
+	@Column(name = "estu_nombre")
 	private String nombre;
-
-	@Column(name = "empl_apellido")
+	
+	@Column(name = "estu_apellido")
 	private String apellido;
-
-	@Column(name = "empl_fecha_nacimiento")
-	private LocalDateTime fechaNacimiento;
-
-	@Column(name = "empl_salario")
-	private BigDecimal salario;
+	
+	@Column(name = "estu_fecha_nacimiento")
+	private String fechaNacimiento;
+	
+	@Column(name = "estu_correo_institucional")
+	private String correoInstitucional;
 
 	
-	//SET y GET
+	//get y set
 	public Integer getId() {
 		return id;
 	}
@@ -54,23 +51,21 @@ public class Empleado {
 		this.apellido = apellido;
 	}
 
-	public LocalDateTime getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public BigDecimal getSalario() {
-		return salario;
+	public String getCorreoInstitucional() {
+		return correoInstitucional;
 	}
 
-	public void setSalario(BigDecimal salario) {
-		this.salario = salario;
+	public void setCorreoInstitucional(String correoInstitucional) {
+		this.correoInstitucional = correoInstitucional;
 	}
-
-	
 	
 	
 }

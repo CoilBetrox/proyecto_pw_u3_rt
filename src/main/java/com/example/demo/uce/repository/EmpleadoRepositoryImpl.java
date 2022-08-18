@@ -27,8 +27,8 @@ public class EmpleadoRepositoryImpl implements IEmpleadoRepository{
 
 	@Override
 	public Empleado buscar(Integer id) {
-		this.entityManager.find(Empleado.class, id);
-		return null;
+		
+		return this.entityManager.find(Empleado.class, id);
 	}
 	
 	@Override

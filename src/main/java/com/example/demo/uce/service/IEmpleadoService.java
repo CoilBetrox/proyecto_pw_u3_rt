@@ -7,5 +7,5 @@ public interface IEmpleadoService {
 	public void crear(Empleado empledo);
 	public void actualizar(Empleado empleado);
 	public Empleado buscarPorId(Integer id);
-	public void Eliminar (Integer id);
+	public void eliminar (Integer id);
 }
