@@ -1,5 +1,10 @@
 package com.example.demo.uce.controller;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +20,7 @@ import com.example.demo.uce.repository.modelo.Empleado;
 import com.example.demo.uce.service.IEmpleadoService;
 
 @RestController
-@RequestMapping("APINomina/V1/empleados")
+@RequestMapping("/empleados")
 public class EmpleadoRestFullController {
 	
 	@Autowired
@@ -58,6 +63,12 @@ public class EmpleadoRestFullController {
 			msj = "Error al eliminar";
 		}
 		return msj;
+	}
+	
+	@GetMapping
+	public List<Empleado> buscarEmpleadoPorSalario(@PathParam(value="sal") BigDecimal salario) {
+		return this.empleadoService.buscaPorSalario(salario);
+		//return ResponseEntity.ok(empl);
 	}
 	
 }
