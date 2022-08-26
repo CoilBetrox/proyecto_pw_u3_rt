@@ -40,6 +40,7 @@ public class EmpleadoRepositoryImpl implements IEmpleadoRepository{
 		this.entityManager.remove(this.buscar(id));
 	}
 
+	//si se requiere pasar mas parametros, se realiza desde aquí
 	@Override
 	public List<Empleado> buscaPorSalario(BigDecimal salario) {
 		// TODO Auto-generated method stub
