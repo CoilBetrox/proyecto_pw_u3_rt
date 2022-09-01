@@ -1,6 +1,9 @@
 package com.example.demo.uce.repository;
 
+import java.util.List;
+
 import com.example.demo.uce.repository.modelo.Empleado;
+import com.example.demo.uce.repository.modelo.Hijo;
 
 public interface IEmpleadoRepository {
 
@@ -11,4 +14,12 @@ public interface IEmpleadoRepository {
 	public void eliminar(Integer id);
 	
 	public Empleado buscar(Integer id);
+
+	//public List<Empleado> buscarTodos();
+
+	List<Empleado> buscaTodos();
+
+	List<Hijo> buscarHijosEmpleado(Integer id);
+
+	
 }

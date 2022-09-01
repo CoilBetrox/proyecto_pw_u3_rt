@@ -1,6 +1,12 @@
 package com.example.demo.uce.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.uce.repository.modelo.Empleado;
 import com.example.demo.uce.service.IEmpleadoService;
+import com.example.demo.uce.service.to.EmpleadoTo;
+import com.example.demo.uce.service.to.HijoTo;
 
 @RestController
 @RequestMapping("APINomina/V1/empleados")
@@ -58,6 +66,25 @@ public class EmpleadoRestFullController {
 			msj = "Error al eliminar";
 		}
 		return msj;
+	}
+	
+	
+	@GetMapping
+	public List<EmpleadoTo> buscarTodos() {
+		List<EmpleadoTo> lista = this.empleadoService.buscarTodos();
+		
+		for(EmpleadoTo empl: lista) {
+			Link myLink = linkTo(methodOn(EmpleadoRestFullController.class)
+					.buscarHijos(empl.getId())).withRel("hijos");
+			empl.add(myLink);
+		}
+		return lista;
+	}
+	
+	@GetMapping(path = "/{idEmpleado}/hijos")
+	public List<HijoTo> buscarHijos(@PathVariable("idEmpleado") Integer idEmpleado){
+		return null;
+		
 	}
 	
 }
