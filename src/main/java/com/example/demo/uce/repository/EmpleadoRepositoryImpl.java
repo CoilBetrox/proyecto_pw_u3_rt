@@ -39,15 +39,6 @@ public class EmpleadoRepositoryImpl implements IEmpleadoRepository{
 	public void eliminar(Integer id) {
 		this.entityManager.remove(this.buscar(id));
 	}
-	
-	@Override
-	public List<Hijo> buscarHijosEmpleado(Integer id) {
-		// TODO Auto-generated method stub
-		TypedQuery<Hijo> myQuery = this.entityManager
-				.createQuery("SELECT h FROM Hijo h WHERE h.id = :id ", Hijo.class);
-		myQuery.setParameter("id", id);
-		return myQuery.getResultList();
-	}
 
 
 

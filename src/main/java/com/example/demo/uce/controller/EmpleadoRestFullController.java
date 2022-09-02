@@ -7,7 +7,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,15 +21,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.uce.repository.modelo.Empleado;
 import com.example.demo.uce.service.IEmpleadoService;
+import com.example.demo.uce.service.IHijoService;
 import com.example.demo.uce.service.to.EmpleadoTo;
 import com.example.demo.uce.service.to.HijoTo;
 
 @RestController
 @RequestMapping("APINomina/V1/empleados")
+@CrossOrigin("http://localhost:8081/")
 public class EmpleadoRestFullController {
 	
 	@Autowired
 	private IEmpleadoService empleadoService;
+	
+	@Autowired
+	private IHijoService hijoService;
 	
 	@PostMapping
 	public String crear(@RequestBody Empleado empleado) {
@@ -51,7 +58,7 @@ public class EmpleadoRestFullController {
 		return msj;
 	}
 	
-	@GetMapping(path = "/{idEmpleado}")
+	@GetMapping(path = "/{idEmpleado}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Empleado> buscarEmpleado(@PathVariable("idEmpleado") Integer id) {
 		Empleado empl = this.empleadoService.buscarPorId(id);
 		return ResponseEntity.ok(empl);
@@ -69,7 +76,7 @@ public class EmpleadoRestFullController {
 	}
 	
 	
-	@GetMapping
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<EmpleadoTo> buscarTodos() {
 		List<EmpleadoTo> lista = this.empleadoService.buscarTodos();
 		
@@ -81,9 +88,10 @@ public class EmpleadoRestFullController {
 		return lista;
 	}
 	
-	@GetMapping(path = "/{idEmpleado}/hijos")
+	
+	@GetMapping(path = "/{idEmpleado}/hijos", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<HijoTo> buscarHijos(@PathVariable("idEmpleado") Integer idEmpleado){
-		return null;
+		return this.hijoService.buscarHijosEmpleado(idEmpleado);
 		
 	}
 	

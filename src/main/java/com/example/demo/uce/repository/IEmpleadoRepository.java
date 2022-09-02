@@ -19,7 +19,6 @@ public interface IEmpleadoRepository {
 
 	List<Empleado> buscaTodos();
 
-	List<Hijo> buscarHijosEmpleado(Integer id);
 
 	
 }
